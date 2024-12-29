@@ -1,0 +1,19 @@
+.container {
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  height: 100vh;
+}
+
+nav {
+  display: grid;
+  align-items: start;
+  justify-items: center;
+  border-right: 1px solid #ffffff;
+  background-color: hsl(0deg, 0%, 98%);
+}
+
+main {
+  padding: 24px;
+}

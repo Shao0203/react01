@@ -1,0 +1,43 @@
+.container {
+  margin: 0 auto;
+  display: grid;
+  place-content: center;
+  gap: 12px;
+  min-height: 100vh;
+  background-color: hsl(220, 33%, 15%);
+  color: rgb(0, 217, 255);
+  font-weight: 800;
+  padding: 48px 0;
+}
+
+.container > div {
+  display: grid;
+  gap: 12px;
+  align-items: center;
+}
+
+.formError {
+  color: red;
+}
+
+.publishBlog {
+  display: grid;
+}
+
+.publishBlog textarea {
+  border: none;
+}
+
+.publishBlog button {
+  justify-self: end;
+}
+
+.menu {
+  display: grid;
+  gap: 12px;
+  padding-top: 24px;
+}
+
+.menu a {
+  color: initial;
+}
