@@ -13,7 +13,6 @@ function App() {
     setLoading(true);
     let url = 'http://localhost:8080/notes';
     if (params) url += `?${new URLSearchParams({ term: params })}`;
-    console.log(url);
     const res = await fetch(url);
     const data = await res.json();
     setNotes(data);
@@ -29,13 +28,25 @@ function App() {
     getNotes(e.target.value);
   }
 
+  async function handleAdd(note) {
+    const res = await fetch('http://localhost:8080/notes', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(note),
+    });
+    const data = await res.json();
+    setNotes([...notes, data]);
+  }
+
   return (
     <main className='container'>
       <div>
         <h1>我的笔记本</h1>
         <SearchNote searchTerm={searchTerm} onChange={handleSearch} />
         {loading ? <div>Loading...</div> : <NoteList notes={notes} />}
-        <AddNote />
+        <AddNote onSubmit={handleAdd} />
       </div>
     </main>
   );
