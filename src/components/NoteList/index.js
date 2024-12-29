@@ -1,12 +1,16 @@
 import React from 'react';
+import './style.css';
 
-function NoteList({ notes, onDelete }) {
+function NoteList({ notes }) {
   return (
-    <div className='container'>
+    <div className='noteList'>
       {notes.map((note) => (
-        <p key={note.id}>
-          {note.note} <button onClick={() => onDelete(note.id)}>Remove</button>
-        </p>
+        <div key={note.id} className='note'>
+          <h2>{note.title}</h2>
+          <article>
+            <p>{note.content}</p>
+          </article>
+        </div>
       ))}
     </div>
   );
