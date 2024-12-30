@@ -10,20 +10,22 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    getNotes();
-  }, []);
-
   function handleSearch(e) {
     setSearchTerm(e.target.value);
     getNotes(e.target.value);
   }
 
-  async function getNotes(params) {
+  async function getNotes(params, controller) {
     setLoading(true);
+    // setTimeout(() => {
+    //   controller.abort();
+    // }, 500);
     let url = '/api/notes';
     if (params) url += `?${new URLSearchParams({ term: params })}`;
-    const res = await fetch(url);
+
+    const res = await fetch(url, {
+      signal: controller.signal,
+    });
     // if (res.status >= 400) {
     if (!res.ok) {
       const error = await res.json();
@@ -47,6 +49,15 @@ function App() {
     const data = await res.json();
     setNotes([...notes, data]);
   }
+
+  useEffect(() => {
+    const controller = new AbortController();
+    getNotes(null, controller);
+
+    return () => {
+      controller.abort();
+    };
+  }, []);
 
   return (
     <main className='container'>
