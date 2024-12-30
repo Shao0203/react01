@@ -21,7 +21,7 @@ function App() {
 
   async function getNotes(params) {
     setLoading(true);
-    let url = 'http://localhost:8080/notes';
+    let url = '/api/notes';
     if (params) url += `?${new URLSearchParams({ term: params })}`;
     const res = await fetch(url);
     // if (res.status >= 400) {
@@ -36,7 +36,7 @@ function App() {
   }
 
   async function handleAdd(note) {
-    const res = await fetch('http://localhost:8080/notes', {
+    const res = await fetch('/api/notes', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
