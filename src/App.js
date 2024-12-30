@@ -3,6 +3,7 @@ import './App.css';
 import AddNote from './components/AddNote';
 import NoteList from './components/NoteList';
 import SearchNote from './components/SearchNote';
+import request from './utils/request';
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -17,36 +18,21 @@ function App() {
 
   async function getNotes(params, controller) {
     setLoading(true);
-    // setTimeout(() => {
-    //   controller.abort();
-    // }, 500);
     let url = '/api/notes';
     if (params) url += `?${new URLSearchParams({ term: params })}`;
 
-    const res = await fetch(url, {
-      signal: controller.signal,
-    });
-    // if (res.status >= 400) {
-    if (!res.ok) {
-      const error = await res.json();
-      setError(error);
-    } else {
-      const data = await res.json();
+    try {
+      const data = await request(url);
       setNotes(data);
+    } catch (e) {
+      setError(e.error);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }
 
   async function handleAdd(note) {
-    const res = await fetch('/api/notes', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer SOMEJWTTOKEN',
-      },
-      body: JSON.stringify(note),
-    });
-    const data = await res.json();
+    const data = await request('/api/notes', 'POST', note);
     setNotes([...notes, data]);
   }
 

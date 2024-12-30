@@ -27,7 +27,7 @@ app.get('/notes', (req, res) => {
   } else {
     res.json(notes);
   }
-  // res.status(500).json({ message: "加载笔记列表出错" });
+  // res.status(500).json({ message: '加载笔记列表出错' });
 });
 
 app.post('/notes', (req, res) => {
