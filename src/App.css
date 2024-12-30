@@ -15,29 +15,3 @@
   gap: 12px;
   align-items: center;
 }
-
-.formError {
-  color: red;
-}
-
-.publishBlog {
-  display: grid;
-}
-
-.publishBlog textarea {
-  border: none;
-}
-
-.publishBlog button {
-  justify-self: end;
-}
-
-.menu {
-  display: grid;
-  gap: 12px;
-  padding-top: 24px;
-}
-
-.menu a {
-  color: initial;
-}
