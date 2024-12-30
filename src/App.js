@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import './App.css';
 import AddNote from './components/AddNote';
 import NoteList from './components/NoteList';
 import SearchNote from './components/SearchNote';
-import request from './utils/request';
+// import request from './utils/request';
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -13,7 +14,7 @@ function App() {
 
   function handleSearch(e) {
     setSearchTerm(e.target.value);
-    getNotes(e.target.value);
+    getNotes(e.target.value, new AbortController());
   }
 
   async function getNotes(params, controller) {
@@ -22,18 +23,25 @@ function App() {
     if (params) url += `?${new URLSearchParams({ term: params })}`;
 
     try {
-      const data = await request(url);
-      setNotes(data);
+      const res = await axios.get(url, {
+        signal: controller.signal,
+      });
+      setNotes(res.data);
     } catch (e) {
-      setError(e.error);
+      if (e.response?.data) setError(e.response?.data);
     } finally {
       setLoading(false);
     }
   }
 
   async function handleAdd(note) {
-    const data = await request('/api/notes', 'POST', note);
-    setNotes([...notes, data]);
+    const res = await axios.post('/api/notes', note, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer SOMEJWTTOKEN',
+      },
+    });
+    setNotes([...notes, res.data]);
   }
 
   useEffect(() => {
