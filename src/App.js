@@ -1,10 +1,10 @@
 import './App.css';
-import Button from './components/Button';
+import ButtonInverse from './components/ButtonInverse';
 
 function App() {
   return (
     <main className='container'>
-      <Button />
+      <ButtonInverse />
     </main>
   );
 }
