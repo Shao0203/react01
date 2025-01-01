@@ -1,13 +1,10 @@
-import { useId } from 'react';
+import './App.css';
+import Button from './components/Button';
 
 function App() {
-  const usernameId = useId();
   return (
     <main className='container'>
-      <form>
-        <label htmlFor={usernameId + 'username'}>User name</label>
-        <input type='text' id={usernameId + 'username'} />
-      </form>
+      <Button />
     </main>
   );
 }

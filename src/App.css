@@ -3,11 +3,10 @@
   display: grid;
   place-content: center;
   gap: 12px;
-  min-height: 100vh;
+  height: 100vh;
   background-color: hsl(220, 33%, 15%);
   color: rgb(0, 217, 255);
   font-weight: 800;
-  padding: 48px 0;
 }
 
 .container > div {
