@@ -1,11 +1,18 @@
 import './App.css';
-import ButtonInverse from './components/ButtonInverse';
+import Button from './components/Button';
+// import ButtonInverse from './components/ButtonInverse';
+import theme from './theme';
+import { ThemeProvider } from 'styled-components';
 
 function App() {
   return (
-    <main className='container'>
-      <ButtonInverse />
-    </main>
+    <ThemeProvider theme={theme.green}>
+      <main className='container'>
+        {/* <ButtonInverse /> */}
+        {/* <Button inverse={true} /> */}
+        <Button />
+      </main>
+    </ThemeProvider>
   );
 }
 
