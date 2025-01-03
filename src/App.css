@@ -14,3 +14,12 @@
   gap: 12px;
   align-items: center;
 }
+
+.link:hover {
+  color: white;
+  font-size: 28px;
+}
+
+.link {
+  transition: color 1s ease-in-out, font-size 1s ease-in-out;
+}
