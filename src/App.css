@@ -15,11 +15,24 @@
   align-items: center;
 }
 
-.link:hover {
+/* .link:hover {
   color: white;
   font-size: 28px;
-}
+} */
 
 .link {
-  transition: color 1s ease-in-out, font-size 1s ease-in-out;
+  /* transition: color 1s ease-in-out, font-size 1s ease-in-out; */
+  animation: blink 1s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
 }
