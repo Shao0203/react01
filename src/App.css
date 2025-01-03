@@ -36,3 +36,18 @@
     opacity: 1;
   }
 }
+
+.link-enter {
+  opacity: 0;
+}
+.link-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms;
+}
+.link-exit {
+  opacity: 1;
+}
+.link-exit-active {
+  opacity: 0;
+  transition: opacity 1000ms;
+}

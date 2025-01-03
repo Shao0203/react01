@@ -1,23 +1,37 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './App.css';
+import { CSSTransition } from 'react-transition-group';
 
 function App() {
-  const refLink = useRef(null);
+  const linkRef = useRef(null);
+  const [isIn, setIsIn] = useState(false);
 
-  useEffect(() => {
-    if (refLink.current !== null) {
-      refLink.current.animate(
-        [{ opacity: 1 }, { opacity: 0.3 }, { opacity: 1 }],
-        { duration: 1000, iterations: Infinity }
-      );
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (linkRef.current !== null) {
+  //     linkRef.current.animate(
+  //       [{ opacity: 1 }, { opacity: 0.3 }, { opacity: 1 }],
+  //       { duration: 1000, iterations: Infinity }
+  //     );
+  //   }
+  // }, []);
 
   return (
     <main className='container'>
-      <a href='#' className='link' ref={refLink}>
-        超链接
-      </a>
+      <button onClick={() => setIsIn(!isIn)}>
+        {isIn ? '隐藏' : '显示'}链接
+      </button>
+      <CSSTransition
+        nodeRef={linkRef}
+        in={isIn}
+        timeout={1000}
+        classNames='link'
+        mountOnEnter
+        unmountOnExit
+      >
+        <a href='#' className='link' ref={linkRef}>
+          超链接
+        </a>
+      </CSSTransition>
     </main>
   );
 }
