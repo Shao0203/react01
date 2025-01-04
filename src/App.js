@@ -9,6 +9,7 @@ function App() {
     { id: 1, value: 1, nodeRef: useRef(null) },
     { id: 2, value: 2, nodeRef: useRef(null) },
     { id: 3, value: 3, nodeRef: useRef(null) },
+    { id: 4, value: 4, nodeRef: useRef(null) },
   ]);
 
   return (
