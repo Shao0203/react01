@@ -1,37 +1,41 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
+import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import './App.css';
-import { CSSTransition } from 'react-transition-group';
 
 function App() {
-  const linkRef = useRef(null);
-  const [isIn, setIsIn] = useState(false);
+  const [current, setCurrent] = useState(1);
+  const component1Ref = useRef(null);
+  const component2Ref = useRef(null);
 
-  // useEffect(() => {
-  //   if (linkRef.current !== null) {
-  //     linkRef.current.animate(
-  //       [{ opacity: 1 }, { opacity: 0.3 }, { opacity: 1 }],
-  //       { duration: 1000, iterations: Infinity }
-  //     );
-  //   }
-  // }, []);
+  let nodeRef = component1Ref;
+
+  let content = '😜';
+  if (current === 1) {
+    nodeRef = component1Ref;
+    content = '😜';
+  }
+  if (current === 2) {
+    nodeRef = component2Ref;
+    content = '😆';
+  }
 
   return (
     <main className='container'>
-      <button onClick={() => setIsIn(!isIn)}>
-        {isIn ? '隐藏' : '显示'}链接
+      <button onClick={() => setCurrent((current) => (current === 1 ? 2 : 1))}>
+        切换
       </button>
-      <CSSTransition
-        nodeRef={linkRef}
-        in={isIn}
-        timeout={1000}
-        classNames='link'
-        mountOnEnter
-        unmountOnExit
-      >
-        <a href='#' className='link' ref={linkRef}>
-          超链接
-        </a>
-      </CSSTransition>
+      <SwitchTransition mode='out-in'>
+        <CSSTransition
+          key={current}
+          nodeRef={nodeRef}
+          classNames='fade'
+          addEndListener={(done) => {
+            nodeRef.current.addEventListener('transitionend', done, false);
+          }}
+        >
+          <div ref={nodeRef}>{content}</div>
+        </CSSTransition>
+      </SwitchTransition>
     </main>
   );
 }

@@ -15,39 +15,17 @@
   align-items: center;
 }
 
-/* .link:hover {
-  color: white;
-  font-size: 28px;
-} */
-
-.link {
-  /* transition: color 1s ease-in-out, font-size 1s ease-in-out; */
-  /* animation: blink 1s ease-in-out infinite; */
-}
-
-@keyframes blink {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.3;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.link-enter {
+.fade-enter {
   opacity: 0;
 }
-.link-enter-active {
+.fade-enter-active {
   opacity: 1;
   transition: opacity 1000ms;
 }
-.link-exit {
+.fade-exit {
   opacity: 1;
 }
-.link-exit-active {
+.fade-exit-active {
   opacity: 0;
   transition: opacity 1000ms;
 }
