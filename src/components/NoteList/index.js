@@ -6,7 +6,7 @@ function NoteList({ notes }) {
     <nav className='noteList'>
       {notes.map((note) => (
         <div key={note.id} className='note'>
-          <a href={`notes/${note.id}`}>{note.title}</a>
+          <a href={`/notes/${note.id}`}>{note.title}</a>
           <p className='contentExerpt'>
             {note.content.substring(0, 20) + '...'}
           </p>
