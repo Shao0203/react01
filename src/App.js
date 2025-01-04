@@ -1,68 +1,7 @@
-import { useRef, useState } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import './App.css';
-import { createRef } from 'react';
-import 'animate.css';
+import React from 'react';
 
 function App() {
-  const [listData, setListData] = useState([
-    { id: 1, value: 1, nodeRef: useRef(null) },
-    { id: 2, value: 2, nodeRef: useRef(null) },
-    { id: 3, value: 3, nodeRef: useRef(null) },
-    { id: 4, value: 4, nodeRef: useRef(null) },
-    { id: 5, value: 5, nodeRef: useRef(null) },
-  ]);
-
-  return (
-    <main className='container'>
-      <ul>
-        <TransitionGroup>
-          {listData.map(({ id, value, nodeRef }) => (
-            <CSSTransition
-              key={id}
-              nodeRef={nodeRef}
-              classNames={{
-                enterActive: 'animate__animated animate__bounceIn',
-                exitActive: 'animate__animated animate__bounceOut',
-              }}
-              timeout={500}
-            >
-              <li ref={nodeRef}>
-                {value}{' '}
-                <button
-                  onClick={() =>
-                    setListData((data) => data.filter((item) => item.id !== id))
-                  }
-                  style={{
-                    padding: '4px',
-                    marginLeft: '8px',
-                    border: '4px',
-                    backgroundColor: 'transparent',
-                  }}
-                >
-                  删除
-                </button>
-              </li>
-            </CSSTransition>
-          ))}
-        </TransitionGroup>
-      </ul>
-      <button
-        onClick={() => {
-          setListData((data) => [
-            ...data,
-            {
-              id: data.length + 1,
-              value: data.length + 1,
-              nodeRef: createRef(null),
-            },
-          ]);
-        }}
-      >
-        添加项目
-      </button>
-    </main>
-  );
+  return <div>App</div>;
 }
 
 export default App;
