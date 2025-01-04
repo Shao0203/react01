@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './App.css';
 import { createRef } from 'react';
+import 'animate.css';
 
 function App() {
   const [listData, setListData] = useState([
@@ -18,8 +19,11 @@ function App() {
             <CSSTransition
               key={id}
               nodeRef={nodeRef}
-              classNames='fade'
-              timeout={1000}
+              classNames={{
+                enterActive: 'animate__animated animate__bounceIn',
+                exitActive: 'animate__animated animate__bounceOut',
+              }}
+              timeout={500}
             >
               <li ref={nodeRef}>
                 {value}{' '}
