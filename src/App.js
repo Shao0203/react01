@@ -4,6 +4,7 @@ import NoteDetails from './components/NoteDetails';
 import NoteForm from './components/NoteForm';
 import NoteList from './components/NoteList';
 import SearchNote from './components/SearchNote';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -19,7 +20,7 @@ function App() {
         <NoteList notes={notes} />
       </aside>
       <main className='mainContent'>
-        <NoteDetails />
+        <Outlet />
       </main>
     </div>
   );
