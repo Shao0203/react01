@@ -1,8 +1,13 @@
 import React from 'react';
 import './style.css';
+import { useLoaderData } from 'react-router-dom';
+
+export async function loader({ params }) {
+  return fetch(`/api/notes/${params.noteId}`);
+}
 
 function NoteDetails() {
-  const note = { title: '测试标题', content: '测试内容', likes: 10 };
+  const note = useLoaderData();
   return (
     <div>
       <h2 className='noteTitle'>{note.title}</h2>

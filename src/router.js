@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App, { loader as appLoader } from './App';
 import Welcome from './components/Welcome';
-import NoteDetails from './components/NoteDetails';
+import NoteDetails, { loader as noteLoader } from './components/NoteDetails';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +16,7 @@ const router = createBrowserRouter([
       {
         path: 'notes/:noteId',
         element: <NoteDetails />,
+        loader: noteLoader,
       },
     ],
   },

@@ -7,7 +7,7 @@ import SearchNote from './components/SearchNote';
 import { Outlet, useLoaderData } from 'react-router-dom';
 
 export async function loader() {
-  return fetch('api/notes');
+  return fetch('/api/notes');
 }
 
 function App() {
