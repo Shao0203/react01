@@ -1,13 +1,13 @@
 import React from 'react';
 import './style.css';
-import { Form } from 'react-router-dom';
+import { Form, redirect } from 'react-router-dom';
 
 export async function action({ request }) {
   const formData = await request.formData();
   console.log(formData);
   const note = Object.fromEntries(formData);
   console.log(note);
-  return fetch('/api/notes', {
+  const res = await fetch('/api/notes', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -15,6 +15,8 @@ export async function action({ request }) {
     },
     body: JSON.stringify(note),
   });
+  const newNote = await res.json();
+  return redirect(`/notes/${newNote.id}`);
 }
 
 function NoteForm() {
