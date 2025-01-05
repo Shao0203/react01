@@ -6,6 +6,7 @@ import NoteForm, {
   action as noteFormAction,
   loader as noteFormLoader,
 } from './components/NoteForm';
+import { action as noteDeleteAction } from './components/NoteDelete';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
         element: <NoteForm />,
         loader: noteFormLoader,
         action: noteFormAction,
+      },
+      {
+        path: 'notes/:noteId/delete',
+        action: noteDeleteAction,
       },
     ],
   },

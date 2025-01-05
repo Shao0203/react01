@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.css';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Form, Link, useLoaderData } from 'react-router-dom';
 
 export async function loader({ params }) {
   return fetch(`/api/notes/${params.noteId}`);
@@ -13,9 +13,9 @@ function NoteDetails() {
       <h2 className='noteTitle'>{note.title}</h2>
       <div className='noteActions'>
         <Link to='edit'>编辑</Link>
-        <form>
+        <Form method='DELETE' action='delete'>
           <button type='submit'>删除</button>
-        </form>
+        </Form>
         <form>
           <button type='submit'>点赞 {note.likes}</button>
         </form>
