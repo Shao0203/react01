@@ -4,7 +4,7 @@ import NoteDetails from './components/NoteDetails';
 import NoteForm from './components/NoteForm';
 import NoteList from './components/NoteList';
 import SearchNote from './components/SearchNote';
-import { Outlet, useLoaderData } from 'react-router-dom';
+import { Form, Outlet, useLoaderData } from 'react-router-dom';
 
 export async function loader() {
   return fetch('/api/notes');
@@ -18,9 +18,11 @@ function App() {
       <aside className='sidebar'>
         <h1 className='logo'>我的笔记本</h1>
         <SearchNote />
-        <button type='submit' className='addNoteBtn'>
-          添加笔记
-        </button>
+        <Form action='notes/new'>
+          <button type='submit' className='addNoteBtn'>
+            添加笔记
+          </button>
+        </Form>
         <NoteList notes={notes} />
       </aside>
       <main className='mainContent'>
