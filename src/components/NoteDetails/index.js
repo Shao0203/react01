@@ -23,6 +23,11 @@ function NoteDetails() {
   const note = useLoaderData();
   const fetcher = useFetcher();
 
+  let likes = note.likes;
+  if (fetcher.formData) {
+    likes = Number(fetcher.formData.get('likes')) + 1;
+  }
+
   return (
     <div>
       <h2 className='noteTitle'>{note.title}</h2>
@@ -32,8 +37,8 @@ function NoteDetails() {
           <button type='submit'>删除</button>
         </Form>
         <fetcher.Form method='PUT'>
-          <button name='likes' value={note.likes} type='submit'>
-            点赞 {note.likes}
+          <button name='likes' value={likes} type='submit'>
+            点赞 {likes}
           </button>
         </fetcher.Form>
       </div>

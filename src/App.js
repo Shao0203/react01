@@ -4,12 +4,13 @@ import NoteDetails from './components/NoteDetails';
 import NoteForm from './components/NoteForm';
 import NoteList from './components/NoteList';
 import SearchNote from './components/SearchNote';
-import { Form, Outlet, useLoaderData } from 'react-router-dom';
+import { Form, Outlet, useLoaderData, useNavigation } from 'react-router-dom';
 
 export async function loader({ request }) {
   const url = new URL(request.url);
   const res = await fetch(`/api/notes?${url.searchParams}`);
   const notes = await res.json();
+
   return {
     notes: notes,
     term: url.searchParams.get('term') || '',
@@ -18,6 +19,7 @@ export async function loader({ request }) {
 
 function App() {
   const { notes } = useLoaderData();
+  const navigation = useNavigation();
 
   return (
     <div className='container'>
@@ -32,6 +34,9 @@ function App() {
         <NoteList notes={notes} />
       </aside>
       <main className='mainContent'>
+        {navigation.state === 'loading' && (
+          <progress className='loadingProgress' />
+        )}
         <Outlet />
       </main>
     </div>
