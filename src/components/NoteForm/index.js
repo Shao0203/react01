@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.css';
-import { Form, redirect, useLoaderData } from 'react-router-dom';
+import { Form, redirect, useLoaderData, useNavigate } from 'react-router-dom';
 
 export async function action({ request, params }) {
   const formData = await request.formData();
@@ -27,6 +27,8 @@ export async function loader({ params }) {
 
 function NoteForm() {
   const note = useLoaderData();
+  const navigate = useNavigate();
+
   return (
     <div className='addNote'>
       <h2>{note ? '编辑笔记' : '添加新笔记'}</h2>
@@ -45,6 +47,9 @@ function NoteForm() {
         />
         <div className='formActions'>
           <button type='submit'>{note ? '保存笔记' : '添加笔记'}</button>
+          <button type='button' onClick={() => navigate(-1)}>
+            返回
+          </button>
         </div>
       </Form>
     </div>

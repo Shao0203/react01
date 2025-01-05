@@ -6,8 +6,9 @@ import NoteList from './components/NoteList';
 import SearchNote from './components/SearchNote';
 import { Form, Outlet, useLoaderData } from 'react-router-dom';
 
-export async function loader() {
-  return fetch('/api/notes');
+export async function loader({ request }) {
+  const url = new URL(request.url);
+  return fetch(`/api/notes?${url.searchParams}`);
 }
 
 function App() {
