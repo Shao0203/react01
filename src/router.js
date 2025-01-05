@@ -31,6 +31,7 @@ const router = createBrowserRouter([
         path: 'notes/:noteId/edit',
         element: <NoteForm />,
         loader: noteFormLoader,
+        action: noteFormAction,
       },
     ],
   },

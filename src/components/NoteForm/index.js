@@ -2,13 +2,15 @@ import React from 'react';
 import './style.css';
 import { Form, redirect, useLoaderData } from 'react-router-dom';
 
-export async function action({ request }) {
+export async function action({ request, params }) {
   const formData = await request.formData();
-  console.log(formData);
   const note = Object.fromEntries(formData);
-  console.log(note);
-  const res = await fetch('/api/notes', {
-    method: 'POST',
+  let url = '/api/notes';
+  if (params.noteId) {
+    url += `/${params.noteId}`;
+  }
+  const res = await fetch(url, {
+    method: request.method,
     headers: {
       'Content-Type': 'application/json',
       Authorization: 'Bearer SOMEJWTTOKEN',
@@ -28,7 +30,7 @@ function NoteForm() {
   return (
     <div className='addNote'>
       <h2>{note ? '编辑笔记' : '添加新笔记'}</h2>
-      <Form method='POST'>
+      <Form method={note ? 'PUT' : 'POST'}>
         <input
           defaultValue={note?.title}
           name='title'
