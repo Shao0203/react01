@@ -1,9 +1,10 @@
 import React from 'react';
 import './style.css';
-import { Form, useSubmit } from 'react-router-dom';
+import { Form, useLoaderData, useSubmit } from 'react-router-dom';
 
 function SearchNote() {
   const submit = useSubmit();
+  const { term } = useLoaderData();
 
   return (
     <div className='search'>
@@ -13,6 +14,7 @@ function SearchNote() {
           type='search'
           placeholder='搜索笔记'
           onChange={(e) => submit(e.target.form)}
+          defaultValue={term}
         />
       </Form>
     </div>

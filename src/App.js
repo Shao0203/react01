@@ -8,11 +8,16 @@ import { Form, Outlet, useLoaderData } from 'react-router-dom';
 
 export async function loader({ request }) {
   const url = new URL(request.url);
-  return fetch(`/api/notes?${url.searchParams}`);
+  const res = await fetch(`/api/notes?${url.searchParams}`);
+  const notes = await res.json();
+  return {
+    notes: notes,
+    term: url.searchParams.get('term') || '',
+  };
 }
 
 function App() {
-  const notes = useLoaderData();
+  const { notes } = useLoaderData();
 
   return (
     <div className='container'>
