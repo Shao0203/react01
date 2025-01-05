@@ -20,29 +20,34 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        index: true,
-        element: <Welcome />,
-      },
-      {
-        path: 'notes/:noteId',
-        element: <NoteDetails />,
-        loader: noteLoader,
-        action: noteAction,
-      },
-      {
-        path: 'notes/new',
-        element: <NoteForm />,
-        action: noteFormAction,
-      },
-      {
-        path: 'notes/:noteId/edit',
-        element: <NoteForm />,
-        loader: noteFormLoader,
-        action: noteFormAction,
-      },
-      {
-        path: 'notes/:noteId/delete',
-        action: noteDeleteAction,
+        errorElement: <ErrorPage />,
+        children: [
+          {
+            index: true,
+            element: <Welcome />,
+          },
+          {
+            path: 'notes/:noteId',
+            element: <NoteDetails />,
+            loader: noteLoader,
+            action: noteAction,
+          },
+          {
+            path: 'notes/new',
+            element: <NoteForm />,
+            action: noteFormAction,
+          },
+          {
+            path: 'notes/:noteId/edit',
+            element: <NoteForm />,
+            loader: noteFormLoader,
+            action: noteFormAction,
+          },
+          {
+            path: 'notes/:noteId/delete',
+            action: noteDeleteAction,
+          },
+        ],
       },
     ],
   },

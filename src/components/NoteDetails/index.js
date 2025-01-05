@@ -3,7 +3,14 @@ import './style.css';
 import { Form, Link, useFetcher, useLoaderData } from 'react-router-dom';
 
 export async function loader({ params }) {
-  return fetch(`/api/notes/${params.noteId}`);
+  const res = await fetch(`/api/notes/${params.noteId}`);
+  if (res.status === 404) {
+    throw new Response('', {
+      status: 404,
+      statusText: 'Note Not Found...',
+    });
+  }
+  return res;
 }
 
 export async function action({ request, params }) {
