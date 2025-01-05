@@ -10,12 +10,14 @@ import NoteForm, {
   loader as noteFormLoader,
 } from './components/NoteForm';
 import { action as noteDeleteAction } from './components/NoteDelete';
+import ErrorPage from './components/ErrorPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     loader: appLoader,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
