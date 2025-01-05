@@ -1,13 +1,28 @@
 import React from 'react';
 import './style.css';
-import { Form, Link, useLoaderData } from 'react-router-dom';
+import { Form, Link, useFetcher, useLoaderData } from 'react-router-dom';
 
 export async function loader({ params }) {
   return fetch(`/api/notes/${params.noteId}`);
 }
 
+export async function action({ request, params }) {
+  const formData = await request.formData();
+  return fetch(`/api/notes/${params.noteId}`, {
+    method: request.method,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      likes: Number(formData.get('likes')) + 1,
+    }),
+  });
+}
+
 function NoteDetails() {
   const note = useLoaderData();
+  const fetcher = useFetcher();
+
   return (
     <div>
       <h2 className='noteTitle'>{note.title}</h2>
@@ -16,9 +31,11 @@ function NoteDetails() {
         <Form method='DELETE' action='delete'>
           <button type='submit'>删除</button>
         </Form>
-        <form>
-          <button type='submit'>点赞 {note.likes}</button>
-        </form>
+        <fetcher.Form method='PUT'>
+          <button name='likes' value={note.likes} type='submit'>
+            点赞 {note.likes}
+          </button>
+        </fetcher.Form>
       </div>
       <article>{note.content}</article>
     </div>

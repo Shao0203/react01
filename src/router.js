@@ -1,7 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App, { loader as appLoader } from './App';
 import Welcome from './components/Welcome';
-import NoteDetails, { loader as noteLoader } from './components/NoteDetails';
+import NoteDetails, {
+  loader as noteLoader,
+  action as noteAction,
+} from './components/NoteDetails';
 import NoteForm, {
   action as noteFormAction,
   loader as noteFormLoader,
@@ -22,6 +25,7 @@ const router = createBrowserRouter([
         path: 'notes/:noteId',
         element: <NoteDetails />,
         loader: noteLoader,
+        action: noteAction,
       },
       {
         path: 'notes/new',
