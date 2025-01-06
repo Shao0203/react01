@@ -1,7 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
-import NoteDetails from './components/NoteDetails';
-import NoteForm from './components/NoteForm';
+import React from 'react';
 import NoteList from './components/NoteList';
 import SearchNote from './components/SearchNote';
 import { Form, Outlet, useLoaderData, useNavigation } from 'react-router-dom';
