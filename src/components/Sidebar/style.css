@@ -15,7 +15,7 @@
 
 .sidebar ul li {
   margin-top: 0.6rem;
-  color: var(--secondary-color);
+  color: gray;
   cursor: pointer;
 }
 
