@@ -1,0 +1,24 @@
+.sidebar {
+  background-color: #273270;
+  color: white;
+  height: 100%;
+  display: grid;
+  justify-content: center;
+  align-content: start;
+  padding: 12px;
+}
+
+.sidebar ul {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.sidebar ul li {
+  margin-top: 0.6rem;
+  color: var(--secondary-color);
+  cursor: pointer;
+}
+
+.sidebar ul li.active {
+  color: white;
+}
