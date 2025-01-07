@@ -14,5 +14,6 @@ export const settingsSlice = createSlice({
   },
 });
 
+export const pickedLanguage = (state) => state.settings.selectedLanguage;
 export const { selectLanguage } = settingsSlice.actions;
 export default settingsSlice.reducer;

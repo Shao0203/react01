@@ -1,32 +1,29 @@
-import React from "react";
-import "./style.css";
+import React from 'react';
+import './style.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectWords, toggleRemembered } from '../../state/wordSlice';
+import { pickedLanguage } from '../../state/settingsSlice';
 
 function Words() {
-  const words = {
-    English: [
-      { word: "hello", def: "你好", remembered: true },
-      { word: "apple", def: "苹果", remembered: false },
-      { word: "name", def: "名字", remembered: false },
-    ],
-    Spanish: [
-      { word: "hola", def: "你好", remembered: false },
-      { word: "manzana", def: "苹果", remembered: true },
-      { word: "nombre", def: "名字", remembered: true },
-    ],
-  };
+  const words = useSelector(selectWords);
+  const language = useSelector(pickedLanguage);
+  const dispatch = useDispatch();
 
   return (
-    <div className="words">
-      {words["English"].map((word) => (
-        <div key={word.word} className="wordCard">
+    <div className='words'>
+      {words.map((word) => (
+        <div key={word.word} className='wordCard'>
           <h3>{word.word}</h3>
           <p>{word.def}</p>
           <button
+            onClick={() =>
+              dispatch(toggleRemembered({ word: word.word, language }))
+            }
             className={`${
-              word.remembered ? "remembered" : "unremembered"
+              word.remembered ? 'remembered' : 'unremembered'
             } wordStatus`}
           >
-            {word.remembered ? "已记" : "未记"}
+            {word.remembered ? '已记' : '未记'}
           </button>
         </div>
       ))}

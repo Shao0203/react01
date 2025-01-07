@@ -1,11 +1,10 @@
 import React from 'react';
 import './style.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectLanguage } from '../../state/settingsSlice';
+import { pickedLanguage, selectLanguage } from '../../state/settingsSlice';
 
 function Sidebar() {
-  // const [language, setLanguage] = useState("English");
-  const language = useSelector((state) => state.settings.selectedLanguage);
+  const language = useSelector(pickedLanguage);
   const dispatch = useDispatch();
 
   return (
