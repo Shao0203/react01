@@ -1,0 +1,10 @@
+.noteList {
+  display: grid;
+  row-gap: 6px;
+}
+
+.deleteBtn {
+  padding: 4px 8px;
+  font-size: 14px;
+  margin-left: 12px;
+}
