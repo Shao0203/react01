@@ -1,11 +1,11 @@
 import React from 'react';
 import './style.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectWords, toggleRemembered } from '../../state/wordSlice';
+import { selectFilteredWords, toggleRemembered } from '../../state/wordSlice';
 import { pickedLanguage } from '../../state/settingsSlice';
 
 function Words() {
-  const words = useSelector(selectWords);
+  const words = useSelector(selectFilteredWords);
   const language = useSelector(pickedLanguage);
   const dispatch = useDispatch();
 
