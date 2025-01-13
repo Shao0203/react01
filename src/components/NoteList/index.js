@@ -1,21 +1,22 @@
 import './style.css';
-import { useNotes, useNotesDispatch } from '../../context/NoteContext';
-
-function NoteList() {
-  const notes = useNotes();
-  const dispatch = useNotesDispatch();
+import { NavLink } from 'react-router-dom';
 
   return (
-    <div className='noteList'>
+    <nav className='noteList'>
       {notes.map((note) => (
         <div key={note.id} className='note'>
-          {note.note}{' '}
-          <button onClick={() => dispatch({ type: 'delete', id: note.id })}>
-            Delete
-          </button>
+          <NavLink
+            to={`notes/${note.id}`}
+            className={({ isActive, isPending }) => (isActive ? 'active' : '')}
+          >
+            {note.title}
+          </NavLink>
+          <p className='contentExerpt'>
+            {note.content.substring(0, 20) + '...'}
+          </p>
         </div>
       ))}
-    </div>
+    </nav>
   );
 }
 

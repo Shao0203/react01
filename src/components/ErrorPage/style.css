@@ -1,0 +1,8 @@
+.errorPage {
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  row-gap: 24px;
+  /* background-color: var(--background-color); */
+  color: var(--primary-color);
+}
