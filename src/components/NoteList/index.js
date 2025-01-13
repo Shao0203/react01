@@ -1,8 +1,6 @@
-import React from 'react';
 import './style.css';
 import { NavLink } from 'react-router-dom';
 
-function NoteList({ notes }) {
   return (
     <nav className='noteList'>
       {notes.map((note) => (

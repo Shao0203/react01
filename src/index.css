@@ -37,14 +37,13 @@ textarea,
 button {
   outline: none;
   font-size: 1rem;
-  border-radius: 4px;
 }
 
 input,
 select,
 textarea {
   border: none;
-  /* border-bottom: 2px solid #82abcf; */
+  border-bottom: 2px solid #82abcf;
 }
 
 input,
@@ -75,7 +74,6 @@ button {
   border-radius: 8px;
   border: none;
   color: white;
-  cursor: pointer;
 }
 
 a {
