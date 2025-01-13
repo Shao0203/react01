@@ -1,15 +1,18 @@
-import React from 'react';
 import './style.css';
+import { useNotes, useNotesDispatch } from '../../context/NoteContext';
 
-function NoteList({ notes }) {
+function NoteList() {
+  const notes = useNotes();
+  const dispatch = useNotesDispatch();
+
   return (
     <div className='noteList'>
       {notes.map((note) => (
         <div key={note.id} className='note'>
-          <h2>{note.title}</h2>
-          <article>
-            <p>{note.content}</p>
-          </article>
+          {note.note}{' '}
+          <button onClick={() => dispatch({ type: 'delete', id: note.id })}>
+            Delete
+          </button>
         </div>
       ))}
     </div>

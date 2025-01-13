@@ -1,15 +1,10 @@
 .noteList {
-  margin: 24px 0;
   display: grid;
-  row-gap: 48px;
-  width: 40vw;
+  row-gap: 6px;
 }
 
-.note h2 {
-  font-weight: normal;
-  margin-bottom: 12px;
-}
-
-.note article {
-  color: hsl(183, 100%, 95%);
+.deleteBtn {
+  padding: 4px 8px;
+  font-size: 14px;
+  margin-left: 12px;
 }

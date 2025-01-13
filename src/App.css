@@ -1,40 +1,8 @@
 .container {
+  width: 80%;
   margin: 0 auto;
   display: grid;
   place-content: center;
   gap: 12px;
   height: 100vh;
-  background-color: hsl(220, 33%, 15%);
-  color: rgb(0, 217, 255);
-  font-weight: 800;
-}
-
-.container > div {
-  display: grid;
-  gap: 12px;
-  align-items: center;
-}
-
-.container li {
-  list-style: none;
-  padding: 12px;
-  background-color: rgb(39, 45, 59);
-  margin-bottom: 14px;
-  border-radius: 4px;
-  text-align: center;
-}
-
-.fade-enter {
-  opacity: 0;
-}
-.fade-enter-active {
-  opacity: 1;
-  transition: opacity 1000ms;
-}
-.fade-exit {
-  opacity: 1;
-}
-.fade-exit-active {
-  opacity: 0;
-  transition: opacity 1000ms;
 }

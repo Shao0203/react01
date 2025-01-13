@@ -1,36 +1,28 @@
-import React from 'react';
-import './style.css';
 import { useState } from 'react';
+import { useNotesDispatch } from '../../context/NoteContext';
 
-function AddNote({ onSubmit }) {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+let noteId = 0;
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    onSubmit({ title: title, content: content });
-    setTitle('');
-    setContent('');
-  }
+function AddNote() {
+  const [note, setNote] = useState([]);
+  const dispatch = useNotesDispatch();
 
   return (
-    <div className='addNote'>
-      <h2>添加新笔记</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type='text'
-          placeholder='请输入笔记标题'
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <textarea
-          rols='6'
-          placeholder='请输入笔记内容'
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
-        <button type='submit'>添加笔记</button>
-      </form>
+    <div>
+      <input
+        type='text'
+        placeholder='写点什么吧'
+        value={note}
+        onChange={(e) => setNote(e.target.value)}
+      />
+      <button
+        onClick={() => {
+          dispatch({ type: 'add', id: noteId++, note });
+          setNote('');
+        }}
+      >
+        添加笔记
+      </button>
     </div>
   );
 }
